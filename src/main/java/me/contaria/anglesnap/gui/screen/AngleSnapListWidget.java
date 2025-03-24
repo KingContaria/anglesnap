@@ -186,7 +186,7 @@ public class AngleSnapListWidget extends ElementListWidget<AngleSnapListWidget.A
             this.pitch.setEditableColor(Colors.WHITE);
             this.pitch.setUneditableColor(Colors.WHITE);
 
-            this.icon = this.addChild(new IconButtonWidget(Text.empty(), button -> ((IconButtonWidget) button).setTexture(this.angle.nextIcon()), this.angle.getIcon()));
+            this.icon = this.addChild(new IconButtonWidget(Text.empty(), button -> ((IconButtonWidget) button).setTexture(this.angle.nextIcon()), this.angle.getIcon(), this.angle.color));
 
             this.color = this.addChild(new TextFieldWidget(
                     this.client.textRenderer,
@@ -244,6 +244,7 @@ public class AngleSnapListWidget extends ElementListWidget<AngleSnapListWidget.A
                 this.yaw.setText(String.valueOf(this.angle.yaw));
                 this.pitch.setText(String.valueOf(this.angle.pitch));
                 this.color.setText(this.colorToString(this.angle.color));
+                this.icon.setColor(this.angle.color);
             }
 
             this.edit.visible = !editing;

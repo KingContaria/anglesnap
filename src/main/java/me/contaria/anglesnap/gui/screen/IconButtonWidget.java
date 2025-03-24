@@ -9,6 +9,15 @@ import net.minecraft.util.Identifier;
 
 public class IconButtonWidget extends ButtonWidget {
     private Identifier texture;
+    private int color = 0xFFFFFFFF;
+
+    public IconButtonWidget(Text message, PressAction onPress, Identifier texture, int color) {
+        this(message, onPress, texture);
+        if (color != 0) {
+            this.color = color;
+        }
+
+    }
 
     public IconButtonWidget(Text message, PressAction onPress, Identifier texture) {
         this(0, 0, 16, 16, message, onPress, ButtonWidget.DEFAULT_NARRATION_SUPPLIER, texture);
@@ -26,7 +35,11 @@ public class IconButtonWidget extends ButtonWidget {
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawTexture(RenderLayer::getGuiTextured, this.texture, this.getX(), this.getY(), 0, 0, this.getWidth(), this.getHeight(), 16, 16);
+        context.drawTexture(RenderLayer::getGuiTextured, this.texture, this.getX(), this.getY(), 0, 0, this.getWidth(), this.getHeight(), 16, 16, color);
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public void setTexture(Identifier texture) {
